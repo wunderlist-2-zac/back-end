@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Tasks = require('./tasks-model');
+const qa = require('../middleware/qa-middleware');
 
 // List All Tasks
 router.get("/", (req, res) => {
@@ -30,7 +31,7 @@ router.get('/:id', (req,res) => {
 
 
 // Add New Task
-router.post("/", (req, res) => {
+router.post("/", qa,(req, res) => {
   
   const task = req.body
   
@@ -65,7 +66,7 @@ router.delete("/:id", (req, res) => {
 
 
 // Update Task
-router.put("/:id", (req, res) => {
+router.put("/:id", qa, (req, res) => {
   const id = req.params.id
   const change = req.body
   
