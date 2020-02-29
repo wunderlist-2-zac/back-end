@@ -4,7 +4,7 @@ const Tasks = require('./tasks-model');
 // List All Tasks
 router.get("/", (req, res) => {
 
-  Tasks.list()
+  Tasks.find()
   .then(tasks => {
     res.status(200).json(tasks);
   })
@@ -13,6 +13,20 @@ router.get("/", (req, res) => {
     res.status(500).json({message: 'Internal Server Error - Listing Tasks'})
   })
 });
+
+router.get('/:id', (req,res) => {
+  
+  const id = req.params.id
+
+  Tasks.findById(id)
+  .then(task => {
+    res.status(200).json(task)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({message: 'Internal Server Error - Task by Id'})
+  })
+})
 
 
 // Add New Task
@@ -40,8 +54,8 @@ router.delete("/:id", (req, res) => {
   const id = req.params.id
 
   Tasks.remove(id)
-  .then(count => {
-    res.status(200).json(count)
+  .then(id => {
+    res.status(200).json(id)
   })
   .catch(err => {
     console.log(err)
@@ -55,7 +69,6 @@ router.put("/:id", (req, res) => {
   const id = req.params.id
   const change = req.body
   
-  if(task.title && task.startDate && task.endDate){
     Tasks.update(id,change)
     .then(task => {
       res.status(200).json(task)
@@ -64,9 +77,6 @@ router.put("/:id", (req, res) => {
       console.log(err)
       res.status(500).json({message: 'Internal Server Error - Updating'})
     })
-  } else {
-    res.status(400).json({message: 'Insufficient Information'})
-  }
 });
 
 

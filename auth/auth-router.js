@@ -59,7 +59,7 @@ function generateToken(user) {
 }
 
 //  GET>>>>>>>>
-//  Kill the session
+//  Kill the session(Logout)
 router.get('/', (req, res) => {
   Users.find()
   .then(users => {
