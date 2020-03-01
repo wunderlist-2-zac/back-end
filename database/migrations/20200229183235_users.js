@@ -4,19 +4,17 @@ exports.up = function(knex) {
     tbl
       .increments();
     tbl
-      .string('Time Stamp')
+      .timestamp('created_at').defaultTo(knex.fn.now())    
+    tbl
+      .string('username')
+      .notNullable()
+      .unique()
+    tbl
+      .string('password')
       .notNullable()      
-    tbl
-      .string('Username')
-      .notNullable()
-      .unique()
-    tbl
-      .password()
-      .notNullable()
-      .unique()
   })
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropIfTableExists('users');
+  return knex.schema.dropTableIfExists('users');
 };

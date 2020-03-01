@@ -16,14 +16,14 @@ router.post('/register', auth,(req, res) => {
   console.log(req.body, "Feed me Seymour!")
   const hash = bcrypt.hashSync(user.password, 10);
   user.password = hash;
-
+  
   Users.add(user)
   .then(saved => {
-    req.session.loggedIn = true;
+    //req.session.loggedIn = true;
     res.status(201).json({ message: "New user saved!" });
   })
   .catch (err => {
-    res.status(500).json({ err: "You're gonna have a bad time."});
+    res.status(500).json(err.message);
   });
 });
 

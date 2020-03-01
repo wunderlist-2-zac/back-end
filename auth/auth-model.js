@@ -1,10 +1,10 @@
-const db = require('../database/dbConfig');
-const router = require('./auth-router');
+const db = require('../database/dbConfig.js');
 
 module.exports = {
   add,
   findBy,
-  find
+  find,
+  findById
 }
 
 function add(user) {
@@ -27,6 +27,10 @@ function find() {
   .select('id', 'username');
 }
 
+function findById(id){
+    return db('users')
+    .select('*')
+    .where({id})
+}
 
-module.exports = router;
 
