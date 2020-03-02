@@ -17,7 +17,9 @@ Libraries used include:
 - bcryptjs
 - jsonwebtoken
 
-## API Documentation
+## API & API Documentation
+
+API can be accessed [Here](https://wunderlistclone.herokuapp.com/) on Heroku
 
 API documentation can be found [Here](https://documenter.getpostman.com/view/6872970/SzKbLaR9) on Postman
 
