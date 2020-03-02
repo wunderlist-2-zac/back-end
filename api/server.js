@@ -17,7 +17,7 @@ server.use('/api/auth', authRouter);
 server.use('/api/tasks', restricted, tasksRouter);
 
 server.get('/', (req,res) => {
-    res.json({ message:"API IS WORKING!" })
+    res.send('API IS WORKING!');
 })
 
 module.exports = server; 
