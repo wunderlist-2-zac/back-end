@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const Tasks = require('./tasks-model');
 const qa = require('../middleware/qa-middleware');
+const {taskValidator} = require('../middleware/validators')
+const RegexTask = require('../middleware/task-middleware')
 
 // List All Tasks
 router.get("/", (req, res) => {
@@ -31,18 +33,18 @@ router.get('/:id', (req,res) => {
 
 
 // Add New Task
-router.post("/", qa,(req, res) => {
+router.post("/",RegexTask,(req, res) => {
   
   const task = req.body
   
-  if(task.title && task.startDate && task.endDate){
+  if(task.title && task.start && task.end){
     Tasks.add(task)
     .then(task => {
       res.status(201).json(task);
     })
     .catch(err => {
       console.log(err)
-      res.status(500).json({message: 'Internal Server Error - Adding Tasks'})
+      res.status(500).json(err.message)
     })
   } else {
     res.status(400).json({message: 'Insufficient Information'})

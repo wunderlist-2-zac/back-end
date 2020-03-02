@@ -4,10 +4,11 @@ exports.up = function(knex) {
   .createTable('tasks', tbl => {
       tbl.increments()
       tbl.string('title').notNullable()
-      tbl.dateTime('start').notNullable()
-      tbl.dateTime('end').notNullable()
+      tbl.string('is_recurring',1)
+      tbl.dateTime('start', { useTz : false, precision:0 } ).notNullable()
+      tbl.dateTime('end', { useTz : false, precision:0 } ).notNullable()
       tbl.bool('completed').notNullable().defaultTo(false)
-      tbl.timestamp('created_at').defaultTo(knex.fn.now()) 
+      tbl.timestamp('created_at',{ useTz : false, precision:0 }).defaultTo(knex.fn.now(0)) 
   })
 };
 
