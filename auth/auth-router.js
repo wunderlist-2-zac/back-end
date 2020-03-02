@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require ('jsonwebtoken');
 const auth = require('../middleware/auth-middleware');
 
+const {userValidator} = require('../middleware/validators')
+
 const Users = require('./auth-model');
 const { jwtSecret } = require('./secrets');
 
@@ -11,7 +13,7 @@ const { jwtSecret } = require('./secrets');
 
 //  POST >>>>>>>>
 //  Create new user
-router.post('/register', auth,(req, res) => {
+router.post('/register', userValidator,(req, res) => {
   let user = req.body;
   console.log(req.body, "Feed me Seymour!")
   const hash = bcrypt.hashSync(user.password, 10);
@@ -42,7 +44,7 @@ router.post('/login', auth, (req, res) => {
       }
     })
     .catch (err => {
-      res.status(500).json({ message: "Something went wrong" });
+      res.status(500).json(err.message);
     });
 });
 
@@ -57,15 +59,5 @@ function generateToken(user) {
   };
   return jwt.sign(payload, jwtSecret, options);
 }
-
-//  GET>>>>>>>>
-//  Kill the session(Logout)
-router.get('/', (req, res) => {
-  Users.find()
-  .then(users => {
-    res.json(users);
-  })
-  .catch(error =res.send(error));
-});
 
 module.exports = router;

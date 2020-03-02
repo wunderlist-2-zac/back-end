@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@hapi/joi": "^17.1.0",
+    "@hapi/joi-date": "^2.0.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -11,10 +13,11 @@
     "helmet": "^3.21.3",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.10",
-    "nodemon": "^2.0.2",
     "pg": "^7.18.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon index.js"

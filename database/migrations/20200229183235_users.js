@@ -4,7 +4,7 @@ exports.up = function(knex) {
     tbl
       .increments();
     tbl
-      .timestamp('created_at').defaultTo(knex.fn.now())    
+      .dateTime('created_at',{ useTz : false, precision:0 }).defaultTo(knex.fn.now(0))
     tbl
       .string('username')
       .notNullable()
