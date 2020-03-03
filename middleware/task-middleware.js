@@ -8,6 +8,4 @@ module.exports = (req,res,next) => {
     } else {
         res.status(500).json({message:'regex didnt pass'})
     }
-
-
 }
