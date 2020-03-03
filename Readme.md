@@ -54,4 +54,4 @@ Marketing UI:
 
 Team Lead (PM):
 
-- Zachery Smith [Github](https://github.com/MrZacSmith)
+- Zachery Smith [Github](https://github.com/MrZacSmith) | [Linkedin](https://www.linkedin.com/in/mrzacsmith/)

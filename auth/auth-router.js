@@ -15,7 +15,7 @@ const { jwtSecret } = require('./secrets');
 //  Create new user
 router.post('/register', userValidator,(req, res) => {
   let user = req.body;
-  console.log(req.body, "Feed me Seymour!")
+  // console.log(req.body, "Feed me Seymour!")
   const hash = bcrypt.hashSync(user.password, 10);
   user.password = hash;
   
