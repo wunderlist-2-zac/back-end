@@ -14,10 +14,10 @@ function add(user) {
     });
 }
 
-function findBy(filter) {
+function findBy(username) {
   return db('users')
     .select('*')
-    .where(filter);
+    .where({username});
 }
 
 function findById(id){
