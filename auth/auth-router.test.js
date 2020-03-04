@@ -23,6 +23,7 @@ describe('Auth Router', function(){
 
         it('should return 200', function(){
             return request(server)
+            
             .post('/api/auth/login')
             .send({ username:"izzy@lambda.com", password:"secure" })
             .then(res => {
