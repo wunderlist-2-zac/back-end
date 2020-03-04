@@ -4,8 +4,6 @@ const request = require("supertest");
 
 const server = require("../api/server");
 
-//let token;
-
 //  Sanity Check >>>>>>>>
 describe('Auth Router', function(){
     it('should run the tests', function(){

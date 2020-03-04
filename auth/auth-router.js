@@ -30,7 +30,7 @@ router.post('/register', userValidator,(req, res) => {
 });
 
 //  User Login
-router.post('/login', auth, (req, res) => {
+router.post('/login', (req, res) => {
   let { username, password } = req.body;
 
   Users.findBy({ username })
