@@ -43,7 +43,7 @@ router.post("/",RegexTask,(req, res) => {
   task.user_id = userid
 
   if(task.title && task.start && task.end){
-    Tasks.add(task)
+    Tasks.add(userid,task)
     .then(task => {
       res.status(201).json(task);
     })
