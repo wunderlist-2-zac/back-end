@@ -8,7 +8,8 @@ exports.up = function(knex) {
       tbl.dateTime('start', { useTz : false, precision:0 } ).notNullable()
       tbl.dateTime('end', { useTz : false, precision:0 } ).notNullable()
       tbl.bool('completed').notNullable().defaultTo(false)
-      tbl.timestamp('created_at',{ useTz : false, precision:0 }).defaultTo(knex.fn.now(0)) 
+      tbl.timestamp('created_at',{ useTz : false, precision:0 }).defaultTo(knex.fn.now(0))
+      tbl.integer('user_id').unsigned().references('id').inTable('users').onUpdate('CASCADE').onDelete('RESTRICT')
   })
 };
 

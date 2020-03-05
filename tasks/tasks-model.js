@@ -8,15 +8,16 @@ module.exports = {
     update
 }
 
-function find(){
+function find(userid){
     return db('tasks')
     .select('*')
+    .where({user_id:userid})
 }
 
-function findById(id){
+function findById(userid,id){
     return db('tasks')
-    .select('*')
-    .where({id})
+    .select('id','title','is_recurring','start','end','completed')
+    .where({id, user_id:userid})
 }
 
 function add(task){
@@ -28,16 +29,16 @@ function add(task){
     })
 }
 
-function remove(id){
+function remove(userid,id){
     return db('tasks')
     .select('*')
-    .where({id})
+    .where({id, user_id:userid})
     .del()
 }
 
-function update(id,change){
+function update(userid, id,change){
     return db('tasks')
     .select('*')
-    .where({id})
+    .where({id, user_id:userid})
     .update(change)
 }
