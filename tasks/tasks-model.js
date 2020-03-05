@@ -20,12 +20,12 @@ function findById(userid,id){
     .where({id, user_id:userid})
 }
 
-function add(task){
+function add(userid,task){
     return db('tasks')
     .insert(task,'id')
     .then(ids => {
         const [id] = ids;
-        return findById(id)
+        return findById(userid,id)
     })
 }
 
