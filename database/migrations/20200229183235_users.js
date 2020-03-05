@@ -2,7 +2,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('users', tbl => {
     tbl
-      .increments();
+      .increments('id');
     tbl
       .dateTime('created_at',{ useTz : false, precision:0 }).defaultTo(knex.fn.now(0))
     tbl

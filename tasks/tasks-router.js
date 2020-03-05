@@ -7,7 +7,9 @@ const RegexTask = require('../middleware/task-middleware')
 // List All Tasks
 router.get("/", (req, res) => {
 
-  Tasks.find()
+  const userid = req.decodedToken.subject
+
+  Tasks.find(userid)
   .then(tasks => {
     res.status(200).json(tasks);
   })
@@ -20,8 +22,9 @@ router.get("/", (req, res) => {
 router.get('/:id', (req,res) => {
   
   const id = req.params.id
+  const userid = req.decodedToken.subject
 
-  Tasks.findById(id)
+  Tasks.findById(userid,id)
   .then(task => {
     res.status(200).json(task)
   })
@@ -36,7 +39,9 @@ router.get('/:id', (req,res) => {
 router.post("/",RegexTask,(req, res) => {
   
   const task = req.body
-  
+  const userid = req.decodedToken.subject
+  task.user_id = userid
+
   if(task.title && task.start && task.end){
     Tasks.add(task)
     .then(task => {
@@ -56,7 +61,9 @@ router.post("/",RegexTask,(req, res) => {
 router.delete("/:id", (req, res) => {
   const id = req.params.id
 
-  Tasks.remove(id)
+  const userid = req.decodedToken.subject
+
+  Tasks.remove(userid,id)
   .then(id => {
     res.status(200).json(id)
   })
@@ -71,8 +78,10 @@ router.delete("/:id", (req, res) => {
 router.put("/:id", qa, (req, res) => {
   const id = req.params.id
   const change = req.body
+
+  const userid = req.decodedToken.subject
   
-    Tasks.update(id,change)
+    Tasks.update(userid,id,change)
     .then(task => {
       res.status(200).json(task)
     })
